@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>40 — A Sacred Number in Scripture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -27,14 +29,15 @@
       --shadow-dark: rgba(0, 0, 0, 0.3);
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { font-size: 16px; }
+    html.smooth { scroll-behavior: smooth; }
 
     body {
       font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
       background: var(--parchment);
       color: var(--text-dark);
       line-height: 1.7;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     /* ═══════════════════════════════════════════
@@ -47,19 +50,12 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight) 60%, #2a1f0a 100%);
+      background:
+        radial-gradient(ellipse at 50% 40%, var(--shadow-gold) 0%, transparent 70%),
+        linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight) 60%, #2a1f0a 100%);
       color: var(--cream);
       padding: 2rem;
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at 50% 40%, var(--shadow-gold) 0%, transparent 70%);
-      pointer-events: none;
     }
 
     .hero-number {
@@ -189,7 +185,6 @@
       background: var(--deep-navy);
       border-bottom: 1px solid rgba(201, 168, 76, 0.2);
       padding: 0;
-      transition: box-shadow 0.3s;
       transform: translateZ(0);
     }
 
@@ -220,7 +215,6 @@
       padding: 1rem 1.2rem;
       white-space: nowrap;
       border-bottom: 2px solid transparent;
-      transition: color 0.3s, border-color 0.3s;
     }
 
     .nav-link:hover, .nav-link.active {
@@ -270,7 +264,7 @@
       background: transparent;
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.25s;
+      transition: color 0.2s, border-color 0.2s, background-color 0.2s;
       letter-spacing: 0.03em;
     }
 
@@ -293,6 +287,8 @@
       padding: 4rem 2rem 2rem;
       max-width: 900px;
       margin: 0 auto;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 2000px;
     }
 
     .theme-header {
@@ -347,22 +343,26 @@
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
       opacity: 0;
       transform: translateY(20px);
-      will-change: opacity, transform;
-      contain: content;
     }
 
     .verse-card.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
       transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
-    .verse-card.visible:hover {
-      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.12);
+    .verse-card.settled {
+      transition: none;
     }
 
-    .verse-card.settled {
-      will-change: auto;
+    @media (prefers-reduced-motion: reduce) {
+      .verse-card {
+        opacity: 1;
+        transform: none;
+      }
+      .verse-card.visible { transition: none; }
+      .hero-number, .hero-subtitle, .hero-verse { animation: none; }
+      .hero-scroll, .hero-scroll::after { animation: none; }
     }
 
     .verse-ref {
@@ -1359,6 +1359,10 @@
 
       document.querySelectorAll('.translation-btn').forEach(btn => {
         btn.addEventListener('click', () => switchTranslation(btn.dataset.translation));
+      });
+
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('smooth');
       });
     });
   </script>
