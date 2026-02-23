@@ -287,8 +287,6 @@
       padding: 4rem 2rem 2rem;
       max-width: 900px;
       margin: 0 auto;
-      content-visibility: auto;
-      contain-intrinsic-size: auto 2000px;
     }
 
     .theme-header {
@@ -1273,6 +1271,13 @@
     //  INTERSECTION OBSERVER — Fade in cards on scroll
     // ═══════════════════════════════════════════════════════════════
     function observeCards() {
+      const cards = document.querySelectorAll('.verse-card');
+
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(card => { card.classList.add('visible'); card.classList.add('settled'); });
+        return;
+      }
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1281,9 +1286,18 @@
             setTimeout(() => entry.target.classList.add('settled'), 600);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.05, rootMargin: '200px 0px' });
 
-      document.querySelectorAll('.verse-card').forEach(card => observer.observe(card));
+      cards.forEach(card => observer.observe(card));
+
+      setTimeout(() => {
+        cards.forEach(card => {
+          if (!card.classList.contains('visible')) {
+            card.classList.add('visible');
+            card.classList.add('settled');
+          }
+        });
+      }, 3000);
     }
 
     // ═══════════════════════════════════════════════════════════════
