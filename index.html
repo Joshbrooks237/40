@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40 — A Sacred Number in Scripture</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep-navy: #0f1729;
+      --midnight: #1a1f3a;
+      --gold: #c9a84c;
+      --gold-light: #e8d48b;
+      --gold-dim: #8a7233;
+      --cream: #f5f0e3;
+      --cream-soft: #ede6d6;
+      --parchment: #faf6ee;
+      --text-dark: #2c2418;
+      --text-muted: #6b5d4d;
+      --text-light: #d4c9b8;
+      --wine: #6b2d3e;
+      --wine-light: #8b3d52;
+      --shadow-gold: rgba(201, 168, 76, 0.15);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      background: var(--parchment);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight) 60%, #2a1f0a 100%);
+      color: var(--cream);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 40%, var(--shadow-gold) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-number {
+      font-size: clamp(8rem, 20vw, 16rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 80px rgba(201, 168, 76, 0.3), 0 0 160px rgba(201, 168, 76, 0.1);
+      animation: fadeInUp 1.5s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-top: 0.5rem;
+      letter-spacing: 0.15em;
+      animation: fadeInUp 1.5s ease-out 0.3s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-verse {
+      max-width: 600px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-light);
+      margin-top: 2.5rem;
+      font-style: italic;
+      line-height: 1.9;
+      animation: fadeInUp 1.5s ease-out 0.6s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-verse cite {
+      display: block;
+      font-style: normal;
+      color: var(--gold-dim);
+      margin-top: 0.75rem;
+      font-size: 0.9em;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--gold-dim);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: pulse 2s ease-in-out infinite;
+      z-index: 1;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: none;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--gold-dim);
+      margin: 0.75rem auto 0;
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       INTRODUCTION
+       ═══════════════════════════════════════════ */
+    .introduction {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .introduction h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--wine);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .introduction p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 2;
+    }
+
+    .introduction p strong {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .gold-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 3rem auto;
+      border: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--deep-navy);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 0;
+      transition: box-shadow 0.3s;
+    }
+
+    .nav-bar.scrolled {
+      box-shadow: 0 4px 20px var(--shadow-dark);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 1rem 1.2rem;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       TRANSLATION PICKER
+       ═══════════════════════════════════════════ */
+    .translation-bar {
+      background: var(--cream-soft);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 0.75rem 2rem;
+      position: sticky;
+      top: 50px;
+      z-index: 99;
+    }
+
+    .translation-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .translation-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+
+    .translation-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s;
+      letter-spacing: 0.03em;
+    }
+
+    .translation-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-dim);
+    }
+
+    .translation-btn.active {
+      background: var(--gold);
+      color: var(--deep-navy);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME SECTIONS
+       ═══════════════════════════════════════════ */
+    .theme-section {
+      padding: 4rem 2rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .theme-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .theme-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .theme-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      color: var(--deep-navy);
+      letter-spacing: 0.02em;
+    }
+
+    .theme-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.75rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .theme-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem auto 0;
+      border: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       VERSE CARDS
+       ═══════════════════════════════════════════ */
+    .verse-card {
+      background: #fff;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .verse-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s;
+    }
+
+    .verse-card:hover {
+      box-shadow: 0 4px 24px rgba(201, 168, 76, 0.12);
+    }
+
+    .verse-ref {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .verse-text {
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: var(--text-dark);
+      font-style: italic;
+      min-height: 2.5em;
+    }
+
+    .verse-text .forty-highlight {
+      color: var(--wine);
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .verse-context {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      line-height: 1.6;
+      font-style: normal;
+    }
+
+    .verse-translation-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      color: var(--gold-dim);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .verse-loading {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       STATISTICS SECTION
+       ═══════════════════════════════════════════ */
+    .stats-section {
+      background: linear-gradient(180deg, var(--deep-navy) 0%, var(--midnight) 100%);
+      color: var(--cream);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .stats-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--gold-light);
+      margin-bottom: 3rem;
+    }
+
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat-card {
+      padding: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .site-footer {
+      background: var(--deep-navy);
+      color: var(--text-light);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .footer-translations {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      line-height: 2;
+      color: var(--text-light);
+    }
+
+    .footer-translations strong {
+      color: var(--gold-dim);
+    }
+
+    .footer-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(212, 201, 184, 0.5);
+      margin-top: 2rem;
+      line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .verse-card { padding: 1.5rem; }
+      .theme-section { padding: 3rem 1rem 1rem; }
+      .nav-link { padding: 0.75rem 0.8rem; font-size: 0.65rem; }
+      .translation-bar { padding: 0.5rem 1rem; top: 42px; }
+      .translation-btn { font-size: 0.65rem; padding: 0.25rem 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .verse-text { font-size: 1.05rem; }
+      .hero { min-height: 90vh; }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--deep-navy);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .count-badge {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      background: var(--gold);
+      color: var(--deep-navy);
+      border-radius: 10px;
+      padding: 0.1rem 0.45rem;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="top">
+    <div class="hero-number">40</div>
+    <div class="hero-subtitle">A Sacred Number in Scripture</div>
+    <div class="hero-verse">
+      &ldquo;And the LORD thy God led thee these forty years in the wilderness,
+      to humble thee, and to prove thee, to know what was in thine heart.&rdquo;
+      <cite>Deuteronomy 8:2 &mdash; KJV</cite>
+    </div>
+    <a href="#intro" class="hero-scroll">Begin the journey</a>
+  </section>
+
+  <!-- ═══════════ INTRODUCTION ═══════════ -->
+  <section class="introduction" id="intro">
+    <h2>The Number of Transformation</h2>
+    <p>
+      In Scripture, <strong>forty</strong> is never accidental. It is the number of
+      <strong>testing</strong>, of <strong>preparation</strong>, of being shaped by something
+      greater than yourself. Rain fell for forty days before a new world emerged.
+      Moses waited forty days to receive God's law. Jesus endured forty days in the
+      wilderness before beginning his ministry.
+    </p>
+    <p>
+      Forty is not punishment &mdash; it is the sacred interval between who you were
+      and who you are becoming. It is the time it takes for the old to wash away
+      and the new to take root.
+    </p>
+    <p>
+      Every verse below carries this truth: <strong>the forty is never the end of the story.</strong>
+      It is always the threshold of something new.
+    </p>
+    <hr class="gold-divider">
+    <p style="font-size: 0.95rem; color: var(--gold-dim);">
+      Across <strong>8 free translations</strong> &middot; spanning the entire Bible
+    </p>
+  </section>
+
+  <!-- ═══════════ STICKY NAV ═══════════ -->
+  <nav class="nav-bar" id="navBar">
+    <div class="nav-inner">
+      <a href="#flood" class="nav-link" data-section="flood">The Flood</a>
+      <a href="#patriarchs" class="nav-link" data-section="patriarchs">Patriarchs</a>
+      <a href="#moses" class="nav-link" data-section="moses">Moses &amp; Sinai</a>
+      <a href="#wilderness" class="nav-link" data-section="wilderness">Wilderness</a>
+      <a href="#kings" class="nav-link" data-section="kings">Judges &amp; Kings</a>
+      <a href="#prophets" class="nav-link" data-section="prophets">Prophets</a>
+      <a href="#jesus" class="nav-link" data-section="jesus">Jesus Christ</a>
+      <a href="#church" class="nav-link" data-section="church">Early Church</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ TRANSLATION PICKER ═══════════ -->
+  <div class="translation-bar" id="translationBar">
+    <div class="translation-inner">
+      <span class="translation-label">Translation:</span>
+      <button class="translation-btn active" data-translation="kjv" title="King James Version (1611)">KJV</button>
+      <button class="translation-btn" data-translation="asv" title="American Standard Version (1901)">ASV</button>
+      <button class="translation-btn" data-translation="web" title="World English Bible">WEB</button>
+      <button class="translation-btn" data-translation="bbe" title="Bible in Basic English">BBE</button>
+      <button class="translation-btn" data-translation="darby" title="Darby Bible">Darby</button>
+      <button class="translation-btn" data-translation="ylt" title="Young's Literal Translation (NT only)">YLT*</button>
+      <button class="translation-btn" data-translation="clementine" title="Clementine Latin Vulgate">Latin</button>
+      <button class="translation-btn" data-translation="almeida" title="João Ferreira de Almeida (Portuguese)">Almeida</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ MAIN CONTENT ═══════════ -->
+  <main id="mainContent"></main>
+
+  <!-- ═══════════ STATISTICS ═══════════ -->
+  <section class="stats-section" id="stats">
+    <h2 class="stats-title">By the Numbers</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="statVerses">0</div>
+        <div class="stat-label">Verses with &ldquo;Forty&rdquo;</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Free Translations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">20</div>
+        <div class="stat-label">Books of the Bible</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Thematic Threads</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="site-footer">
+    <h3 class="footer-title">Translations Used</h3>
+    <div class="footer-translations">
+      <strong>KJV</strong> &mdash; King James Version (1611) &middot; Public Domain<br>
+      <strong>ASV</strong> &mdash; American Standard Version (1901) &middot; Public Domain<br>
+      <strong>WEB</strong> &mdash; World English Bible &middot; Public Domain<br>
+      <strong>BBE</strong> &mdash; Bible in Basic English &middot; Public Domain<br>
+      <strong>Darby</strong> &mdash; Darby Bible &middot; Public Domain<br>
+      <strong>YLT</strong> &mdash; Young&rsquo;s Literal Translation (New Testament only) &middot; Public Domain<br>
+      <strong>Latin Vulgate</strong> &mdash; Clementine Vulgate &middot; Public Domain<br>
+      <strong>Almeida</strong> &mdash; João Ferreira de Almeida (Portuguese) &middot; Public Domain
+    </div>
+    <p class="footer-note">
+      Verse data provided by bible-api.com &middot; All translations are in the public domain.<br>
+      Built with reverence. Every plank placed with care.
+    </p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="Back to top">&uarr;</button>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    //  VERSE DATA — Organized by theme, with embedded KJV fallback
+    // ═══════════════════════════════════════════════════════════════
+    const THEMES = [
+      {
+        id: 'flood',
+        number: 'I',
+        title: 'The Flood',
+        subtitle: 'God cleanses the earth — and promises a new beginning',
+        verses: [
+          {
+            ref: 'Genesis 7:4',
+            api: 'genesis+7:4',
+            kjv: 'For yet seven days, and I will cause it to rain upon the earth forty days and forty nights; and every living substance that I have made will I destroy from off the face of the earth.',
+            context: 'God warns Noah of the coming flood. The forty days of rain will wash away corruption and make room for renewal.'
+          },
+          {
+            ref: 'Genesis 7:12',
+            api: 'genesis+7:12',
+            kjv: 'And the rain was upon the earth forty days and forty nights.',
+            context: 'The rain begins. Forty days of cleansing pour upon the earth.'
+          },
+          {
+            ref: 'Genesis 7:17',
+            api: 'genesis+7:17',
+            kjv: 'And the flood was forty days upon the earth; and the waters increased, and bare up the ark, and it was lift up above the earth.',
+            context: 'Even as the waters rise, the ark is lifted — a picture of being carried above destruction.'
+          },
+          {
+            ref: 'Genesis 8:6',
+            api: 'genesis+8:6',
+            kjv: 'And it came to pass at the end of forty days, that Noah opened the window of the ark which he had made.',
+            context: 'After forty days, the first act of hope: Noah opens the window. The testing is complete.'
+          }
+        ]
+      },
+      {
+        id: 'patriarchs',
+        number: 'II',
+        title: 'The Patriarchs',
+        subtitle: 'Foundations of faith — the number woven into lives of the fathers',
+        verses: [
+          {
+            ref: 'Genesis 18:29',
+            api: 'genesis+18:29',
+            kjv: 'And he spake unto him yet again, and said, Peradventure there shall be forty found there. And he said, I will not do it for forty\'s sake.',
+            context: 'Abraham bargains with God over Sodom. Even forty righteous souls would have been enough to stay God\'s hand — mercy at the number of testing.'
+          },
+          {
+            ref: 'Genesis 25:20',
+            api: 'genesis+25:20',
+            kjv: 'And Isaac was forty years old when he took Rebekah to wife, the daughter of Bethuel the Syrian of Padanaram, the sister to Laban the Syrian.',
+            context: 'Isaac begins his family at forty — the age of readiness and maturity.'
+          },
+          {
+            ref: 'Genesis 26:34',
+            api: 'genesis+26:34',
+            kjv: 'And Esau was forty years old when he took to wife Judith the daughter of Beeri the Hittite, and Bashemath the daughter of Elon the Hittite.',
+            context: 'Esau also marries at forty, though his choices grieve his parents — the same age, a different path.'
+          },
+          {
+            ref: 'Genesis 50:3',
+            api: 'genesis+50:3',
+            kjv: 'And forty days were fulfilled for him; for so are fulfilled the days of those which are embalmed: and the Egyptians mourned for him threescore and ten days.',
+            context: 'Jacob is mourned for forty days — even in death, the number marks a period of reverent transition.'
+          }
+        ]
+      },
+      {
+        id: 'moses',
+        number: 'III',
+        title: 'Moses & Mount Sinai',
+        subtitle: 'Face to face with God — forty days that changed everything',
+        verses: [
+          {
+            ref: 'Exodus 16:35',
+            api: 'exodus+16:35',
+            kjv: 'And the children of Israel did eat manna forty years, until they came to a land inhabited; they did eat manna, until they came unto the borders of the land of Canaan.',
+            context: 'For forty years, God provided daily bread in the wilderness — sustained not by their own hands, but by grace.'
+          },
+          {
+            ref: 'Exodus 24:18',
+            api: 'exodus+24:18',
+            kjv: 'And Moses went into the midst of the cloud, and gat him up into the mount: and Moses was in the mount forty days and forty nights.',
+            context: 'Moses enters the cloud of God\'s presence on Sinai. Forty days to receive the covenant — the law written by the finger of God.'
+          },
+          {
+            ref: 'Exodus 34:28',
+            api: 'exodus+34:28',
+            kjv: 'And he was there with the LORD forty days and forty nights; he did neither eat bread, nor drink water. And he wrote upon the tables the words of the covenant, the ten commandments.',
+            context: 'Moses returns to Sinai after the golden calf. Another forty days — this time for restoration. His face shone when he came down.'
+          },
+          {
+            ref: 'Deuteronomy 9:9',
+            api: 'deuteronomy+9:9',
+            kjv: 'When I was gone up into the mount to receive the tables of stone, even the tables of the covenant which the LORD made with you, then I abode in the mount forty days and forty nights, I neither did eat bread nor drink water.',
+            context: 'Moses recounts the sacred forty days on the mountain — neither food nor water, sustained by the presence of God alone.'
+          },
+          {
+            ref: 'Deuteronomy 9:11',
+            api: 'deuteronomy+9:11',
+            kjv: 'And it came to pass at the end of forty days and forty nights, that the LORD gave me the two tables of stone, even the tables of the covenant.',
+            context: 'At the completion of forty days, the covenant is given — transformation requires the full measure of time.'
+          },
+          {
+            ref: 'Deuteronomy 9:18',
+            api: 'deuteronomy+9:18',
+            kjv: 'And I fell down before the LORD, as at the first, forty days and forty nights: I did neither eat bread, nor drink water, because of all your sins which ye sinned, in doing wickedly in the sight of the LORD, to provoke him to anger.',
+            context: 'Moses prostrates himself for another forty days, interceding for the people\'s sin. Forty days of pleading mercy.'
+          },
+          {
+            ref: 'Deuteronomy 9:25',
+            api: 'deuteronomy+9:25',
+            kjv: 'Thus I fell down before the LORD forty days and forty nights, as I fell down at the first; because the LORD had said he would destroy you.',
+            context: 'Again Moses lies before the Lord for forty days — standing in the gap between judgment and mercy.'
+          },
+          {
+            ref: 'Deuteronomy 25:3',
+            api: 'deuteronomy+25:3',
+            kjv: 'Forty stripes he may give him, and not exceed: lest, if he should exceed, and beat him above these with many stripes, then thy brother should seem vile unto thee.',
+            context: 'Even in discipline, forty is the boundary — a limit placed by mercy. Punishment must not cross into cruelty.'
+          }
+        ]
+      },
+      {
+        id: 'wilderness',
+        number: 'IV',
+        title: 'The Wilderness',
+        subtitle: 'Forty years of wandering — and the faithfulness found within',
+        verses: [
+          {
+            ref: 'Numbers 13:25',
+            api: 'numbers+13:25',
+            kjv: 'And they returned from searching of the land after forty days.',
+            context: 'The twelve spies explore the Promised Land for forty days. They return with fruit — and with fear. The forty days of exploration become forty years of consequence.'
+          },
+          {
+            ref: 'Numbers 14:33–34',
+            api: 'numbers+14:33-34',
+            kjv: 'And your children shall wander in the wilderness forty years, and bear your whoredoms, until your carcases be wasted in the wilderness. After the number of the days in which ye searched the land, even forty days, each day for a year, shall ye bear your iniquities, even forty years, and ye shall know my breach of promise.',
+            context: 'Forty days of doubt become forty years of wandering. A day for a year — the cost of not trusting the promise.'
+          },
+          {
+            ref: 'Numbers 32:13',
+            api: 'numbers+32:13',
+            kjv: 'And the LORD\'s anger was kindled against Israel, and he made them wander in the wilderness forty years, until all the generation that had done evil in the sight of the LORD, was consumed.',
+            context: 'The generation of fear passes away in the wilderness. But their children — the next generation — will enter the land.'
+          },
+          {
+            ref: 'Deuteronomy 2:7',
+            api: 'deuteronomy+2:7',
+            kjv: 'For the LORD thy God hath blessed thee in all the works of thy hand: he knoweth thy walking through this great wilderness: these forty years the LORD thy God hath been with thee; thou hast lacked nothing.',
+            context: 'Even in the wandering, the promise: "thou hast lacked nothing." Forty years of faithfulness in the desert.'
+          },
+          {
+            ref: 'Deuteronomy 8:2',
+            api: 'deuteronomy+8:2',
+            kjv: 'And thou shalt remember all the way which the LORD thy God led thee these forty years in the wilderness, to humble thee, and to prove thee, to know what was in thine heart, whether thou wouldest keep his commandments, or no.',
+            context: 'The purpose of the forty years revealed: not punishment, but a proving — to know what was in your heart.'
+          },
+          {
+            ref: 'Deuteronomy 8:4',
+            api: 'deuteronomy+8:4',
+            kjv: 'Thy raiment waxed not old upon thee, neither did thy foot swell, these forty years.',
+            context: 'A quiet miracle spanning forty years — clothes that did not wear out, feet that did not swell. Provision in the smallest details.'
+          },
+          {
+            ref: 'Deuteronomy 29:5',
+            api: 'deuteronomy+29:5',
+            kjv: 'And I have led you forty years in the wilderness: your clothes are not waxen old upon you, and thy shoe is not waxen old upon thy foot.',
+            context: 'Moses reminds the people again: even your shoes were preserved. Forty years of care in every thread.'
+          },
+          {
+            ref: 'Joshua 5:6',
+            api: 'joshua+5:6',
+            kjv: 'For the children of Israel walked forty years in the wilderness, till all the people that were men of war, which came out of Egypt, were consumed, because they obeyed not the voice of the LORD: unto whom the LORD sware that he would not shew them the land, which the LORD sware unto their fathers that he would give us, a land that floweth with milk and honey.',
+            context: 'The old chapter closes. The forty years end. And the land of milk and honey awaits the new generation.'
+          },
+          {
+            ref: 'Nehemiah 9:21',
+            api: 'nehemiah+9:21',
+            kjv: 'Yea, forty years didst thou sustain them in the wilderness, so that they lacked nothing; their clothes waxed not old, and their feet swelled not.',
+            context: 'Centuries later, Nehemiah remembers the miracle of the wilderness. The forty years of faithfulness are never forgotten.'
+          },
+          {
+            ref: 'Psalm 95:10',
+            api: 'psalm+95:10',
+            kjv: 'Forty years long was I grieved with this generation, and said, It is a people that do err in their heart, and they have not known my ways.',
+            context: 'God\'s own words about the wilderness generation. Even in his grief, forty years of patience.'
+          }
+        ]
+      },
+      {
+        id: 'kings',
+        number: 'V',
+        title: 'Judges & Kings',
+        subtitle: 'Forty years of peace, forty years of reign — the measure of an era',
+        verses: [
+          {
+            ref: 'Joshua 14:7',
+            api: 'joshua+14:7',
+            kjv: 'Forty years old was I when Moses the servant of the LORD sent me from Kadeshbarnea to espy out the land; and I brought him word again as it was in mine heart.',
+            context: 'Caleb speaks — he was forty when he spied out the land and brought back a report of faith, not fear. He is now eighty-five and still strong.'
+          },
+          {
+            ref: 'Judges 3:11',
+            api: 'judges+3:11',
+            kjv: 'And the land had rest forty years. And Othniel the son of Kenaz died.',
+            context: 'After Othniel delivers Israel, the land rests for forty years. Peace follows faithfulness.'
+          },
+          {
+            ref: 'Judges 5:31',
+            api: 'judges+5:31',
+            kjv: 'So let all thine enemies perish, O LORD: but let them that love him be as the sun when he goeth forth in his might. And the land had rest forty years.',
+            context: 'After Deborah and Barak\'s victory, forty years of rest — like the sun going forth in its might.'
+          },
+          {
+            ref: 'Judges 8:28',
+            api: 'judges+8:28',
+            kjv: 'Thus was Midian subdued before the children of Israel, so that they lifted up their heads no more. And the country was in quietness forty years in the days of Gideon.',
+            context: 'Gideon\'s faith brings forty years of quietness. The fleece, the three hundred, and then — peace.'
+          },
+          {
+            ref: 'Judges 13:1',
+            api: 'judges+13:1',
+            kjv: 'And the children of Israel did evil again in the sight of the LORD; and the LORD delivered them into the hand of the Philistines forty years.',
+            context: 'Forty years under the Philistines — but this is the chapter that introduces Samson. Even oppression leads to a deliverer.'
+          },
+          {
+            ref: '1 Samuel 4:18',
+            api: '1+samuel+4:18',
+            kjv: 'And it came to pass, when he made mention of the ark of God, that he fell from off the seat backward by the side of the gate, and his neck brake, and he died: for he was an old man, and heavy. And he had judged Israel forty years.',
+            context: 'Eli judged Israel forty years. His ending was tragic, but his tenure was long — forty years of service.'
+          },
+          {
+            ref: '1 Samuel 17:16',
+            api: '1+samuel+17:16',
+            kjv: 'And the Philistine drew near morning and evening, and presented himself forty days.',
+            context: 'Goliath challenges Israel for forty days. Forty days of fear — until a shepherd boy steps forward.'
+          },
+          {
+            ref: '2 Samuel 5:4',
+            api: '2+samuel+5:4',
+            kjv: 'David was thirty years old when he began to reign, and he reigned forty years.',
+            context: 'David, the man after God\'s own heart, reigned forty years. The shepherd became king for a full generation.'
+          },
+          {
+            ref: '1 Kings 2:11',
+            api: '1+kings+2:11',
+            kjv: 'And the days that David reigned over Israel were forty years: seven years reigned he in Hebron, and thirty and three years reigned he in Jerusalem.',
+            context: 'David\'s forty-year reign summarized — seven years in Hebron, thirty-three in Jerusalem. A complete arc.'
+          },
+          {
+            ref: '1 Kings 6:17',
+            api: '1+kings+6:17',
+            kjv: 'And the house, that is, the temple before it, was forty cubits long.',
+            context: 'The Temple of Solomon — forty cubits long. The number is built into the very house of God.'
+          },
+          {
+            ref: '1 Kings 11:42',
+            api: '1+kings+11:42',
+            kjv: 'And the time that Solomon reigned in Jerusalem over all Israel was forty years.',
+            context: 'Solomon, too, reigned forty years — wisdom given a full generation to build, create, and shine.'
+          },
+          {
+            ref: '2 Chronicles 9:30',
+            api: '2+chronicles+9:30',
+            kjv: 'And Solomon reigned in Jerusalem over all Israel forty years.',
+            context: 'The Chronicler confirms: forty years. The number of completion for the wisest king.'
+          }
+        ]
+      },
+      {
+        id: 'prophets',
+        number: 'VI',
+        title: 'The Prophets',
+        subtitle: 'Warnings, mercy, and the strength to press on',
+        verses: [
+          {
+            ref: '1 Kings 19:8',
+            api: '1+kings+19:8',
+            kjv: 'And he arose, and did eat and drink, and went in the strength of that meat forty days and forty nights unto Horeb the mount of God.',
+            context: 'Elijah, exhausted and wanting to die, is fed by an angel. That single meal sustains him for forty days and nights — all the way to the mountain of God. When you feel you cannot go on, you may be one meal away from your destiny.'
+          },
+          {
+            ref: 'Ezekiel 4:6',
+            api: 'ezekiel+4:6',
+            kjv: 'And when thou hast accomplished them, lie again on thy right side, and thou shalt bear the iniquity of the house of Judah forty days: I have appointed thee each day for a year.',
+            context: 'Ezekiel bears Judah\'s sin symbolically — forty days for forty years. The prophet carries the weight of a nation.'
+          },
+          {
+            ref: 'Ezekiel 29:11',
+            api: 'ezekiel+29:11',
+            kjv: 'No foot of man shall pass through it, nor foot of beast shall pass through it, neither shall it be inhabited forty years.',
+            context: 'Egypt faces forty years of desolation — but even here, forty is a measured period. Judgment has an end.'
+          },
+          {
+            ref: 'Ezekiel 29:12',
+            api: 'ezekiel+29:12',
+            kjv: 'And I will make the land of Egypt desolate in the midst of the countries that are desolate, and her cities among the cities that are laid waste shall be desolate forty years: and I will scatter the Egyptians among the nations, and will disperse them through the countries.',
+            context: 'Even for nations, forty years is the boundary of desolation. There is always an after.'
+          },
+          {
+            ref: 'Jonah 3:4',
+            api: 'jonah+3:4',
+            kjv: 'And Jonah began to enter into the city a day\'s journey, and he cried, and said, Yet forty days, and Nineveh shall be overthrown.',
+            context: 'Forty days — a deadline of mercy. Nineveh repented, and God relented. The forty days were not a death sentence but an invitation to change.'
+          }
+        ]
+      },
+      {
+        id: 'jesus',
+        number: 'VII',
+        title: 'Jesus Christ',
+        subtitle: 'The ultimate forty — tested, triumphant, and risen',
+        verses: [
+          {
+            ref: 'Matthew 4:2',
+            api: 'matthew+4:2',
+            kjv: 'And when he had fasted forty days and forty nights, he was afterward an hungred.',
+            context: 'Jesus fasts forty days and forty nights in the wilderness. Where Israel failed for forty years, he stands firm for forty days. The parallel is deliberate and profound.'
+          },
+          {
+            ref: 'Mark 1:13',
+            api: 'mark+1:13',
+            kjv: 'And he was there in the wilderness forty days, tempted of Satan; and was with the wild beasts; and the angels ministered unto him.',
+            context: 'Mark\'s spare account: forty days, wild beasts, Satan, and angels. The wilderness stripped bare to its essentials.'
+          },
+          {
+            ref: 'Luke 4:2',
+            api: 'luke+4:2',
+            kjv: 'Being forty days tempted of the devil. And in those days he did eat nothing: and when they were ended, he afterward hungered.',
+            context: 'Luke notes he ate nothing for the entire forty days. The hunger was real. The testing was real. And so was the victory.'
+          },
+          {
+            ref: 'Acts 1:3',
+            api: 'acts+1:3',
+            kjv: 'To whom also he shewed himself alive after his passion by many infallible proofs, being seen of them forty days, and speaking of the things pertaining to the kingdom of God.',
+            context: 'After the resurrection, Jesus appears for forty days — not in hiding, but teaching, proving, preparing. The final forty before the ascension.'
+          }
+        ]
+      },
+      {
+        id: 'church',
+        number: 'VIII',
+        title: 'The Early Church',
+        subtitle: 'Echoes of forty resounding through the apostolic age',
+        verses: [
+          {
+            ref: 'Acts 7:23',
+            api: 'acts+7:23',
+            kjv: 'And when he was full forty years old, it came into his heart to visit his brethren the children of Israel.',
+            context: 'Stephen recounts Moses\' life: at forty, he felt the stirring to help his people. The age of awakening.'
+          },
+          {
+            ref: 'Acts 7:30',
+            api: 'acts+7:30',
+            kjv: 'And when forty years were expired, there appeared to him in the wilderness of mount Sina an angel of the Lord in a flame of fire in a bush.',
+            context: 'Another forty years pass before the burning bush. Moses was forty when he fled Egypt, eighty when God called him. Some callings take time.'
+          },
+          {
+            ref: 'Acts 7:36',
+            api: 'acts+7:36',
+            kjv: 'He brought them out, after that he had shewed wonders and signs in the land of Egypt, and in the Red sea, and in the wilderness forty years.',
+            context: 'Stephen traces the thread: forty years of wonders in the wilderness. Even wandering was accompanied by miracles.'
+          },
+          {
+            ref: 'Acts 7:42',
+            api: 'acts+7:42',
+            kjv: 'Then God turned, and gave them up to worship the host of heaven; as it is written in the book of the prophets, O ye house of Israel, have ye offered to me slain beasts and sacrifices by the space of forty years in the wilderness?',
+            context: 'God asks a piercing question through Stephen: forty years of sacrifices, but were your hearts truly in them?'
+          },
+          {
+            ref: 'Acts 13:18',
+            api: 'acts+13:18',
+            kjv: 'And about the time of forty years suffered he their manners in the wilderness.',
+            context: 'Paul preaching in Antioch: God "suffered their manners" — endured their ways — for forty years. Divine patience measured in decades.'
+          },
+          {
+            ref: 'Acts 13:21',
+            api: 'acts+13:21',
+            kjv: 'And afterward they desired a king: and God gave unto them Saul the son of Cis, a man of the tribe of Benjamin, by the space of forty years.',
+            context: 'Saul reigned forty years. Even the imperfect king was given a full measure of time.'
+          },
+          {
+            ref: 'Acts 23:13',
+            api: 'acts+23:13',
+            kjv: 'And they were more than forty which had made this conspiracy.',
+            context: 'More than forty men conspire against Paul — but their plot fails. The number of testing becomes the number of a thwarted enemy.'
+          },
+          {
+            ref: 'Acts 23:21',
+            api: 'acts+23:21',
+            kjv: 'But do not thou yield unto them: for there lie in wait for him of them more than forty men, which have bound themselves with an oath, that they will neither eat nor drink till they have killed him: and now are they ready, looking for a promise from thee.',
+            context: 'Forty men swore an oath to kill Paul. They fasted. They plotted. And still God delivered his servant.'
+          },
+          {
+            ref: '2 Corinthians 11:24',
+            api: '2+corinthians+11:24',
+            kjv: 'Of the Jews five times received I forty stripes save one.',
+            context: 'Paul received thirty-nine lashes five times — "forty stripes save one." The law allowed forty; mercy withheld one. Five times Paul endured nearly the full measure.'
+          },
+          {
+            ref: 'Hebrews 3:9',
+            api: 'hebrews+3:9',
+            kjv: 'When your fathers tempted me, proved me, and saw my works forty years.',
+            context: 'The writer of Hebrews warns: your fathers saw God\'s works for forty years and still hardened their hearts. Seeing is not always believing.'
+          },
+          {
+            ref: 'Hebrews 3:17',
+            api: 'hebrews+3:17',
+            kjv: 'But with whom was he grieved forty years? was it not with them that had sinned, whose carcases fell in the wilderness?',
+            context: 'The final echo: forty years of grief. But the warning is for the living — today, if you hear his voice, do not harden your heart.'
+          }
+        ]
+      }
+    ];
+
+    // ═══════════════════════════════════════════════════════════════
+    //  TRANSLATION CACHE & STATE
+    // ═══════════════════════════════════════════════════════════════
+    let currentTranslation = 'kjv';
+    const translationCache = {};
+    const API_BASE = 'https://bible-api.com';
+
+    const TRANSLATION_NAMES = {
+      kjv: 'King James Version',
+      asv: 'American Standard Version',
+      web: 'World English Bible',
+      bbe: 'Bible in Basic English',
+      darby: 'Darby Bible',
+      ylt: "Young's Literal Translation",
+      clementine: 'Latin Vulgate',
+      almeida: 'Almeida (Portuguese)'
+    };
+
+    const OT_BOOKS = new Set([
+      'Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Joshua','Judges',
+      'Ruth','1 Samuel','2 Samuel','1 Kings','2 Kings','1 Chronicles','2 Chronicles',
+      'Ezra','Nehemiah','Esther','Job','Psalm','Proverbs','Ecclesiastes',
+      'Song of Solomon','Isaiah','Jeremiah','Lamentations','Ezekiel','Daniel',
+      'Hosea','Joel','Amos','Obadiah','Jonah','Micah','Nahum','Habakkuk',
+      'Zephaniah','Haggai','Zechariah','Malachi'
+    ]);
+
+    function isOT(ref) {
+      for (const book of OT_BOOKS) {
+        if (ref.startsWith(book)) return true;
+      }
+      return false;
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  RENDER FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════
+    function highlightForty(text) {
+      return text.replace(/(forty|quarenta|quadraginta|quarante)/gi, '<span class="forty-highlight">$1</span>');
+    }
+
+    function renderAll() {
+      const main = document.getElementById('mainContent');
+      let html = '';
+      let totalVerses = 0;
+
+      THEMES.forEach(theme => {
+        totalVerses += theme.verses.length;
+        html += `
+          <section class="theme-section" id="${theme.id}">
+            <div class="theme-header">
+              <div class="theme-number">${theme.number}</div>
+              <h2 class="theme-title">${theme.title} <span class="count-badge">${theme.verses.length}</span></h2>
+              <p class="theme-subtitle">${theme.subtitle}</p>
+              <hr class="theme-divider">
+            </div>
+            ${theme.verses.map((v, i) => `
+              <div class="verse-card" data-ref="${v.api}" data-index="${i}">
+                <div class="verse-ref">${v.ref}</div>
+                <div class="verse-text">${highlightForty(v.kjv)}</div>
+                <div class="verse-translation-note">${TRANSLATION_NAMES.kjv}</div>
+                <div class="verse-context">${v.context}</div>
+              </div>
+            `).join('')}
+          </section>
+        `;
+      });
+
+      main.innerHTML = html;
+      document.getElementById('statVerses').textContent = totalVerses;
+      observeCards();
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  FETCH TRANSLATIONS
+    // ═══════════════════════════════════════════════════════════════
+    async function fetchVerse(apiRef, translation) {
+      const cacheKey = `${translation}:${apiRef}`;
+      if (translationCache[cacheKey]) return translationCache[cacheKey];
+
+      try {
+        const resp = await fetch(`${API_BASE}/${apiRef}?translation=${translation}`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        const text = data.text.trim();
+        translationCache[cacheKey] = text;
+        return text;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    async function switchTranslation(translation) {
+      currentTranslation = translation;
+
+      document.querySelectorAll('.translation-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.translation === translation);
+      });
+
+      const cards = document.querySelectorAll('.verse-card');
+      const isKJV = translation === 'kjv';
+      const isYLT = translation === 'ylt';
+
+      for (const card of cards) {
+        const apiRef = card.dataset.ref;
+        const textEl = card.querySelector('.verse-text');
+        const noteEl = card.querySelector('.verse-translation-note');
+        const ref = card.querySelector('.verse-ref').textContent;
+
+        if (isKJV) {
+          const theme = THEMES.find(t => t.verses.some(v => v.api === apiRef));
+          const verse = theme?.verses.find(v => v.api === apiRef);
+          if (verse) {
+            textEl.innerHTML = highlightForty(verse.kjv);
+            noteEl.textContent = TRANSLATION_NAMES.kjv;
+          }
+          continue;
+        }
+
+        if (isYLT && isOT(ref)) {
+          textEl.innerHTML = '<em style="color: var(--text-muted);">Young\'s Literal Translation covers the New Testament only.</em>';
+          noteEl.textContent = TRANSLATION_NAMES.ylt;
+          continue;
+        }
+
+        textEl.innerHTML = '<span class="verse-loading">Loading&hellip;</span>';
+        noteEl.textContent = TRANSLATION_NAMES[translation] || translation;
+      }
+
+      if (isKJV) return;
+
+      const batchSize = 5;
+      const cardArr = Array.from(cards);
+
+      for (let i = 0; i < cardArr.length; i += batchSize) {
+        const batch = cardArr.slice(i, i + batchSize);
+        await Promise.all(batch.map(async card => {
+          const apiRef = card.dataset.ref;
+          const textEl = card.querySelector('.verse-text');
+          const ref = card.querySelector('.verse-ref').textContent;
+
+          if (isYLT && isOT(ref)) return;
+          if (currentTranslation !== translation) return;
+
+          const text = await fetchVerse(apiRef, translation);
+          if (currentTranslation !== translation) return;
+
+          if (text) {
+            textEl.innerHTML = highlightForty(text);
+          } else {
+            const theme = THEMES.find(t => t.verses.some(v => v.api === apiRef));
+            const verse = theme?.verses.find(v => v.api === apiRef);
+            textEl.innerHTML = verse
+              ? highlightForty(verse.kjv) + ' <em style="font-size:0.8em; color: var(--text-muted);">(KJV fallback)</em>'
+              : '<em style="color: var(--text-muted);">Translation unavailable.</em>';
+          }
+        }));
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  INTERSECTION OBSERVER — Fade in cards on scroll
+    // ═══════════════════════════════════════════════════════════════
+    function observeCards() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.verse-card').forEach(card => observer.observe(card));
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  NAVIGATION HIGHLIGHTING
+    // ═══════════════════════════════════════════════════════════════
+    function setupNav() {
+      const sections = document.querySelectorAll('.theme-section');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.dataset.section === id);
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -70% 0px' });
+
+      sections.forEach(section => sectionObserver.observe(section));
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  BACK TO TOP
+    // ═══════════════════════════════════════════════════════════════
+    function setupBackToTop() {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 600);
+      });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  NAV BAR SHADOW
+    // ═══════════════════════════════════════════════════════════════
+    function setupNavShadow() {
+      const nav = document.getElementById('navBar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 100);
+      });
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  INIT
+    // ═══════════════════════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAll();
+      setupNav();
+      setupBackToTop();
+      setupNavShadow();
+
+      document.querySelectorAll('.translation-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTranslation(btn.dataset.translation));
+      });
+    });
+  </script>
+</body>
+</html>
