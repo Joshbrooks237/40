@@ -68,7 +68,7 @@
       color: var(--gold);
       line-height: 1;
       letter-spacing: -0.02em;
-      text-shadow: 0 0 80px rgba(201, 168, 76, 0.3), 0 0 160px rgba(201, 168, 76, 0.1);
+      text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
       animation: fadeInUp 1.5s ease-out;
       position: relative;
       z-index: 1;
@@ -133,6 +133,12 @@
       background: var(--gold-dim);
       margin: 0.75rem auto 0;
       animation: scrollLine 2s ease-in-out infinite;
+      animation-play-state: inherit;
+    }
+
+    .hero.offscreen .hero-scroll,
+    .hero.offscreen .hero-scroll::after {
+      animation-play-state: paused;
     }
 
     /* ═══════════════════════════════════════════
@@ -184,6 +190,7 @@
       border-bottom: 1px solid rgba(201, 168, 76, 0.2);
       padding: 0;
       transition: box-shadow 0.3s;
+      transform: translateZ(0);
     }
 
     .nav-bar.scrolled {
@@ -231,6 +238,7 @@
       position: sticky;
       top: 50px;
       z-index: 99;
+      transform: translateZ(0);
     }
 
     .translation-inner {
@@ -337,19 +345,24 @@
       padding: 2rem 2.5rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-      transition: box-shadow 0.3s, transform 0.3s;
       opacity: 0;
       transform: translateY(20px);
+      will-change: opacity, transform;
+      contain: content;
     }
 
     .verse-card.visible {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
-    .verse-card:hover {
+    .verse-card.visible:hover {
       box-shadow: 0 4px 24px rgba(201, 168, 76, 0.12);
+    }
+
+    .verse-card.settled {
+      will-change: auto;
     }
 
     .verse-ref {
@@ -533,17 +546,19 @@
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(10px) translateZ(0);
       transition: opacity 0.3s, transform 0.3s;
       z-index: 200;
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: none;
     }
 
     .back-to-top.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) translateZ(0);
+      pointer-events: auto;
     }
 
     .count-badge {
@@ -1263,6 +1278,7 @@
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
+            setTimeout(() => entry.target.classList.add('settled'), 600);
           }
         });
       }, { threshold: 0.1 });
@@ -1292,26 +1308,44 @@
     }
 
     // ═══════════════════════════════════════════════════════════════
-    //  BACK TO TOP
+    //  PAUSE HERO ANIMATIONS WHEN OFF-SCREEN
     // ═══════════════════════════════════════════════════════════════
-    function setupBackToTop() {
-      const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > 600);
-      });
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+    function setupHeroPause() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          hero.classList.toggle('offscreen', !entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+
+      heroObserver.observe(hero);
     }
 
     // ═══════════════════════════════════════════════════════════════
-    //  NAV BAR SHADOW
+    //  THROTTLED SCROLL — single listener, batched via rAF
     // ═══════════════════════════════════════════════════════════════
-    function setupNavShadow() {
+    function setupScrollEffects() {
+      const btn = document.getElementById('backToTop');
       const nav = document.getElementById('navBar');
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
+      let ticking = false;
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            btn.classList.toggle('visible', y > 600);
+            nav.classList.toggle('scrolled', y > 100);
+            ticking = false;
+          });
+        }
+      }, { passive: true });
     }
 
     // ═══════════════════════════════════════════════════════════════
@@ -1320,8 +1354,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderAll();
       setupNav();
-      setupBackToTop();
-      setupNavShadow();
+      setupScrollEffects();
+      setupHeroPause();
 
       document.querySelectorAll('.translation-btn').forEach(btn => {
         btn.addEventListener('click', () => switchTranslation(btn.dataset.translation));
